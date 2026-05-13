@@ -1,0 +1,14 @@
+mongock:
+  migration-scan-package: com.cdq.banking.migration
+
+management:
+  endpoints:
+    access:
+      default: unrestricted
+      max-permitted: unrestricted
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always

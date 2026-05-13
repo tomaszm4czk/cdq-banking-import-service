@@ -1,0 +1,24 @@
+Please design and implement a simple REST API application for importing bank accounts transactions.
+Imagine that you want to have some aggregation tool for all your bank transfers for specific period of time
+and collects some valuable statistics to better manage and understand your personal budget.
+Task description:
+ Design API which allows to import file with bank accounts transactions on monthly basis
+ Design API which can present imported transaction statistics per category, IBAN, month
+Functional requirements:
+ Imported file should have CSV format and each transaction should contain basic information like
+(IBAN, date of transaction, currency, category, amount)
+ Client should be able to check if file is imported and results of aggregation are available.
+ Provide some basic validation for input data from file per row.
+ Application should support file with 10000 lines
+ Code should be easy to extend and implement new business functionality
+ Describe how you explored Banking domain
+Technical requirements:
+ Provide a docker-compose file that prepares the required stack. Choose the tools and libraries on
+your own
+ Use Spring Boot 4+ with Java 17+
+ Please use GitHub and Gradle
+ Preferred DB: MongoDB
+ Please document briefly how to start the application and how to use the API
+ Provide some evidence that application is working and what are results
+Please implement as much as you want to provide fully working solution ready to deploy on production and
+showing your experience.

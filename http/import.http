@@ -1,0 +1,44 @@
+### Import transactions from CSV file
+POST http://localhost:8080/api/v1/imports
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="transactions.csv"
+Content-Type: text/csv
+
+iban,date,currency,category,amount
+DE89370400440532013000,2026-01-15,EUR,GROCERIES,45.99
+DE89370400440532013000,2026-01-20,EUR,SALARY,3500.00
+PL61109010140000071219812874,2026-01-05,PLN,UTILITIES,120.50
+PL61109010140000071219812874,2026-01-18,PLN,GROCERIES,89.99
+DE89370400440532013000,2026-02-01,EUR,RENT,950.00
+DE89370400440532013000,2026-02-10,EUR,GROCERIES,52.30
+PL61109010140000071219812874,2026-02-15,PLN,ENTERTAINMENT,35.00
+GB29NWBK60161331926819,2026-01-25,GBP,TRANSPORT,15.80
+GB29NWBK60161331926819,2026-02-03,GBP,GROCERIES,67.45
+DE89370400440532013000,2026-01-28,EUR,ENTERTAINMENT,19.99
+--boundary--
+
+> {%
+    client.global.set("jobId", response.body.jobId);
+%}
+
+### Check import job status
+GET http://localhost:8080/api/v1/imports/{{jobId}}/status
+
+### Import file with invalid rows
+POST http://localhost:8080/api/v1/imports
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="mixed.csv"
+Content-Type: text/csv
+
+iban,date,currency,category,amount
+DE89370400440532013000,2026-01-15,EUR,GROCERIES,45.99
+BAD_IBAN,not-a-date,FAKE,NOPE,abc
+--boundary--
+
+> {%
+    client.global.set("jobId", response.body.jobId);
+%}

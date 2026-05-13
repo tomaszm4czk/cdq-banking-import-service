@@ -1,0 +1,65 @@
+### Statistics by category (defaults: page 0, size 20)
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "CATEGORY"
+}
+
+### Statistics by IBAN
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "IBAN"
+}
+
+### Statistics by month
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "MONTH"
+}
+
+### Filter by IBAN
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "CATEGORY",
+  "iban": "DE89370400440532013000"
+}
+
+### Filter by month range (May-August 2026)
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "CATEGORY",
+  "fromMonth": "2026-05",
+  "toMonth": "2026-08"
+}
+
+### Combined: IBAN + month range + pagination
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "MONTH",
+  "iban": "PL61109010140000071219812874",
+  "fromMonth": "2026-01",
+  "toMonth": "2026-06",
+  "page": 0,
+  "size": 10
+}
+
+### Pagination: page 2, size 5
+POST http://localhost:8080/api/v1/statistics/search
+Content-Type: application/json
+
+{
+  "groupBy": "IBAN",
+  "page": 2,
+  "size": 5
+}
